@@ -1,0 +1,38 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="container">
+	<h2> <%=user.name%> Profile : </h2>
+	<table class="table">
+   		 <thead>
+    		  <tr>
+				   <th>ID</th>
+     			   <th>Name</th>
+     			   <th>Email</th>
+				   <th>Section</th>
+				   <th>Year</th>
+				   <th>City</th>
+				   <th>Country</th>
+     		  </tr>
+    	</thead>	
+		<tbody>
+			
+			
+			  <tr>
+				  <td><%=user.id%></td>
+				  <td><%=user.name%></td>
+                  <td><%=user.email%></td>
+				  <td><%=user.section%></td>
+				  <td><%=user.year%></td>
+				  <td><%=user.city%></td>
+				  <td><%=user.country%></td>
+
+              </tr>
+		</tbody>
+	
+	</table>
+	<a href="/users" class="p-4">Go Back </a>
+	<a href="/"> <span class="glyphicon glyphicon-log-out">LogOut</span> </a>
+</div>
+
+
+<%- include('./partials/footer.ejs') %>

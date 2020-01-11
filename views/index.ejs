@@ -1,0 +1,48 @@
+<%- include('./partials/header.ejs') %>
+<h1>
+	Welcome to Display students : 
+</h1>
+<div class="container">
+	<h2>Users Table</h2>
+    <p>Contains the users data : </p>  
+	<table class="table">
+   		 <thead>
+    		  <tr>
+				   <th>ID</th>
+     			   <th>Name</th>
+     			   <th>Email</th>
+				   <th>Section</th>
+				   <th>Year</th>
+				   <th>City</th>
+				   <th>Country</th>
+     		  </tr>
+    	</thead>	
+		<tbody>
+			
+			<% users.forEach(function(users){ %>
+			  <tr>
+				  <td><%=users.id%></td>
+				  <td><%=users.name%></td>
+                  <td><%=users.email%></td>
+				  <td><%=users.section%></td>
+				  <td><%=users.year%></td>
+				  <td><%=users.city%></td>
+				  <td><%=users.country%></td>
+	
+				  
+				 <td> <form action="/users/<%= users._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-xs btn-danger" onclick="return confirm('Are you sure to delete this record ?');">Delete</button>
+                        </form>
+				  </td>
+				  <td> <a class="btn btn-xs btn-warning" href="/users/<%= users._id %>/edit">Update</a> </td>
+              </tr>
+		</tbody>
+		<% }) %>
+	</table>
+	<a href="/">
+          <span class="glyphicon glyphicon-log-out">Logout</span>
+        </a>
+</div>
+
+
+<%- include('./partials/footer.ejs') %>
