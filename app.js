@@ -2,7 +2,7 @@ var express               = require("express"),
     mongoose              = require("mongoose"),
     passport              = require("passport"),
     bodyParser            = require("body-parser"),
-	methodOverride		  = require("method-override"),
+    methodOverride        = require("method-override"),
     User                  = require("./models/users"),
     LocalStrategy         = require("passport-local").Strategy,
     passportLocalMongoose = require("passport-local-mongoose")
@@ -18,13 +18,13 @@ app.use(require("express-session")({
     saveUninitialized: false
 }));
 
+//PASSPORT AUTH
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy({
   usernameField: 'email'
 }, User.authenticate()));
 passport.use(User.createStrategy());
-//passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -56,6 +56,7 @@ app.get("/users/:id/edit", isLoggedIn, function(req, res){
         res.render("edit", {users: foundUser});
     });
 });
+
 //UPDATE USER
 app.put("/users/:id",isLoggedIn,function(req,res){
 	//console.log(req.body.student);
@@ -73,7 +74,7 @@ app.put("/users/:id",isLoggedIn,function(req,res){
 //SHOW SINGLE USER INFO
 app.get("/users/:id",isLoggedIn,function(req,res){
 	 User.findById(req.params.id, function(err, updatedUser){
-       if(err || updatedUser){
+       if(err || !updatedUser){
            console.log(err);
        } else {
           res.render("show",{user : updatedUser});
@@ -109,7 +110,7 @@ app.post("/register", function(req, res){
             return res.render('register');
         }
         passport.authenticate("local")(req, res, function(){
-			console.log(user);
+	   console.log(user);
            res.redirect("/login");
         });
     });
