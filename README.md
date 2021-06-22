@@ -20,4 +20,4 @@ How to use :
 3) Register Yourself
 4) After you login you can view all the students and you can delete or modify them
 
-*It is an basic application of CURD , yes more updation can be made.
+*It is an basic application of CRUD , yes more updation can be made.
